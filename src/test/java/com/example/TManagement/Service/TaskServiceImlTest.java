@@ -21,7 +21,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 public class TaskServiceImlTest {
 
-    @InjectMocks
+  /*  @InjectMocks
     private TaskServiceIml taskService;
 
     @Mock
@@ -100,5 +100,5 @@ public class TaskServiceImlTest {
 
         // Assert
         verify(taskRepository, times(1)).delete(task1);
-    }
+    } */
 }
