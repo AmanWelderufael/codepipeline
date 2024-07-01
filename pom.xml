@@ -83,7 +83,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>com.example.TManagement.TManagementApplication</mainClass>
+							<mainClass>com.example.TManagement.TManagementApplication</mainClass> <!-- Replace with your actual main class -->
 						</manifest>
 					</archive>
 				</configuration>
