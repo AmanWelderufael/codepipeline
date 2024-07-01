@@ -7,7 +7,6 @@ phases:
       - echo Logging into Amazon ECR started on `date`
       - aws --version
       - echo Logging into Amazon ECR...
-      # Log into ECR with AWS CLI v2
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 599642401641.dkr.ecr.us-east-1.amazonaws.com
       - echo Setting repository URI...
       - export REPOSITORY_URI=599642401641.dkr.ecr.us-east-1.amazonaws.com/cicdpipeline
@@ -33,7 +32,7 @@ phases:
       - echo Setting container name...
       - export DOCKER_CONTAINER_NAME=cdcicontainer
       - echo Writing image definitions file...
-      - printf '[{"name":"%s","imageUrl":"%s"}]' $DOCKER_CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"%s","imageUri":"%s"}]' $DOCKER_CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - echo $DOCKER_CONTAINER_NAME
       - echo Printing imagedefinitions.json
       - cat imagedefinitions.json
