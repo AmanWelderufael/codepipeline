@@ -13,6 +13,7 @@ public class Task {
     @Column(nullable = false, name = "description")
     private String description;
 
+    public Task(){};
     public Task(long l, String task1, String s) {
     }
 
