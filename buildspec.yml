@@ -6,11 +6,16 @@ phases:
     runtime-versions:
       java: corretto17
     commands:
-      - echo Installing Docker...
+      - echo Installing dependencies...
+      - yum update -y
+      - yum install -y curl wget git
+      - echo Downloading and installing Docker...
       - curl -fsSL https://get.docker.com -o get-docker.sh
+      - cat get-docker.sh  # Print the script to debug if necessary
       - sh get-docker.sh
       - service docker start
       - usermod -aG docker $USER
+      - echo Installing Docker Compose...
       - curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
       - chmod +x /usr/local/bin/docker-compose
       - docker-compose --version
