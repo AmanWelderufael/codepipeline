@@ -1,14 +1,25 @@
-# Use an official JDK runtime as a parent image
-FROM openjdk:17-jdk-slim
+# Use an official OpenJDK runtime as a parent image
+FROM openjdk:11-jdk-slim
 
-# Set the working directory in the container
+# Set the working directory
 WORKDIR /app
 
-# Copy the executable JAR file from your local machine to the container
-COPY ./target/TManagement-0.0.1-SNAPSHOT.jar app.jar
+# Copy the project files into the container
+COPY . .
 
-# Expose the port your Spring Boot app runs on
+# Add a volume pointing to /tmp
+VOLUME /tmp
+
+# Make port 8080 available to the world outside this container
 EXPOSE 8080
 
-# Run the JAR file
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# The application's jar file
+ARG JAR_FILE=target/*.jar
+
+# Add the application's jar to the container
+ADD ${JAR_FILE} app.jar
+
+# Run the jar file
+ENTRYPOINT ["java","-jar","/app.jar"]
+
+

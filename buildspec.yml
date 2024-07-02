@@ -6,43 +6,28 @@ phases:
     runtime-versions:
       java: corretto17
     commands:
-      - echo Installing dependencies...
       - yum update -y
-      - yum install -y curl wget git
+      - yum install -y curl wget git docker
 
   pre_build:
     commands:
-      - echo Logging into Amazon ECR...
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 599642401641.dkr.ecr.us-east-1.amazonaws.com
-      - echo Setting repository URI...
       - export REPOSITORY_URI=599642401641.dkr.ecr.us-east-1.amazonaws.com/cicdpipeline
-      - echo Setting image tag...
       - export IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
-      - echo REPOSITORY_URI=$REPOSITORY_URI
-      - echo IMAGE_TAG=$IMAGE_TAG
 
   build:
     commands:
-      - echo Building and tagging Docker image on `date`
-      - echo Running mvn clean install without tests...
       - mvn clean install -DskipTests
-      - echo Building the Docker image...
       - docker-compose build app
-      - docker images
-      - echo Tagging the Docker image...
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
 
   post_build:
     commands:
-      - echo Pushing Docker image to Amazon ECR started on `date`
-      - echo Pushing to repository...
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - echo Writing image definitions file...
       - printf '[{"name":"app","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
-      - echo Printing imagedefinitions.json
-      - cat imagedefinitions.json
 
 artifacts:
   files:
     - imagedefinitions.json
+
