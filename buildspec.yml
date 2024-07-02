@@ -7,17 +7,8 @@ phases:
       java: corretto17
     commands:
       - echo Installing dependencies...
-      - yum update -y || true
-      - yum install -y curl wget git || true
-      - echo Downloading and installing Docker...
-      - curl -fsSL https://get.docker.com -o get-docker.sh
-      - sh get-docker.sh || cat /var/log/yum.log
-      - service docker start || journalctl -xe
-      - usermod -aG docker $USER
-      - echo Installing Docker Compose...
-      - curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-      - chmod +x /usr/local/bin/docker-compose
-      - docker-compose --version
+      - yum update -y
+      - yum install -y curl wget git
 
   pre_build:
     commands:
