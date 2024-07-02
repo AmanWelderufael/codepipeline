@@ -7,6 +7,9 @@ WORKDIR /app
 # Copy the executable JAR file from your local machine to the container
 COPY ./target/TManagement-0.0.1-SNAPSHOT.jar app.jar
 
+# copy application properties file to the container
+COPY src/main/resources/application.properties /app/application.properties
+
 # Expose the port your Spring Boot app runs on
 EXPOSE 8080
 
