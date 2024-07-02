@@ -5,6 +5,7 @@ phases:
   install:
     runtime-versions:
       docker: 19
+      java: corretto17
     commands:
       - echo Installing Docker Compose...
       - curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -47,5 +48,3 @@ phases:
 artifacts:
   files:
     - imagedefinitions.json
-
-
