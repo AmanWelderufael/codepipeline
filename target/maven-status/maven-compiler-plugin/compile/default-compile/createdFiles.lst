@@ -1,0 +1,6 @@
+com/example/TManagement/Entity/Task.class
+com/example/TManagement/Controller/TaskController.class
+com/example/TManagement/Service/TaskServiceIml.class
+com/example/TManagement/Service/TaskService.class
+com/example/TManagement/TManagementApplication.class
+com/example/TManagement/Repository/TaskRepository.class
