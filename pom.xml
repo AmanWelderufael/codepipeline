@@ -14,9 +14,9 @@
 	<name>TManagement</name>
 	<description>Demo project for Spring Boot</description>
 
-	<properties>
-		<java.version>17</java.version>
-	</properties>
+<!--	<properties>-->
+<!--		<java.version>17</java.version>-->
+<!--	</properties>-->
 
 	<dependencies>
 		<!-- Spring Boot Dependencies -->
@@ -74,16 +74,7 @@
 					</execution>
 				</executions>
 			</plugin>
-
-			<!-- Maven Surefire Plugin for running tests -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.22.2</version>
-				<configuration>
-					<argLine>-XX:+EnableDynamicAgentLoading -Djdk.instrument.traceUsage</argLine>
-				</configuration>
-			</plugin>
+			
 		</plugins>
 	</build>
 </project>
